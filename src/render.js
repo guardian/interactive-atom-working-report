@@ -1,8 +1,25 @@
-import templateHTML from "./src/templates/main.html!text"
+import mainTemplate from './src/templates/main.html!text'
+import headerTemplate from './src/templates/header.html!text'
+import Mustache from 'mustache'
+import rp from 'request-promise'
 
-export async function render() {
-	// this function just has to return a string of HTML
-	// you can generate this using js, e.g. using Mustache.js
+var partialTemplates = {
+	"header": headerTemplate
+};
 
-    return templateHTML;
+export function render() {
+    return rp({
+        uri: 'https://interactive.guim.co.uk/docsdata-test/1AEhtpkEcq5qVl2R9xvgC1wPjOtMrBHcdlWl5u2n3kvI.json',
+        json: true
+    }).then((data) => {
+        var sheets = data;
+        var chapters = data.chapters.length;
+        var html;
+        for(var i = 0; i < chapters; i++) {
+            console.log(sheets.chapters[i].copy);
+        }
+
+        var html = Mustache.render(mainTemplate, sheets, partialTemplates);
+        return html;
+    });
 }

@@ -12,3 +12,333 @@
 .interactive-atom {
     margin: 0 !important;
 }
+
+pre {
+    font-size: 17px;
+    line-height: 22px;
+    font-family: $f-serif-text;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    margin: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    @include mq($from: desktop) {
+        padding: 0;
+    }
+
+    p {
+        margin: 0px;
+        padding: 0px;
+    }
+}
+
+h1 {
+    color: #fff;
+    line-height: 22px;
+    font-size: 22px;
+    font-weight: 700;
+    font-family: "Guardian Headline Full";
+
+    @include mq($from: desktop) {
+        line-height: 28px;
+        font-size: 28px;
+    }
+}
+
+h2 {
+    font-family: "Guardian Titlepiece";
+    font-size: 55px;
+    line-height: 55px;
+
+    &.sub-head {
+        font-family: "Guardian Headline Full";
+        font-size: 30px;
+        line-height: 30px;
+
+    }
+}
+
+h3 {
+    font-family: "Guardian Titlepiece";
+    font-size: 200px;
+    line-height: 150px;
+    margin-top: -30px;
+}
+
+//this just offsets the type on desktop
+.interactive-blocks {
+    .wr-section:nth-child(1) {
+        .working-report__intro-type {
+            @include mq($from: desktop) {
+                margin-left: 0;
+            }
+
+            .big-number {
+                left: 5.5vw;
+            }
+        }
+    }
+    .wr-section:nth-child(8) {
+        .working-report__intro-type {
+            @include mq($from: desktop) {
+                margin-left: 4.5vw;
+            }
+        }
+    }
+}
+
+.working-report__menu {
+    position: fixed;
+    top: 20vh;
+    left: 10px;
+    display: none;
+    z-index: 20;
+
+    @include mq($from: desktop) {
+        display: block;
+    }
+
+    .working-report__menu-item {
+        overflow: visible;
+        height: 26px;
+        cursor: pointer;
+
+        &:hover{
+            p {
+                opacity: 1;
+            }
+            &:before {
+                opacity: 1;
+            }
+        }
+
+        p {
+            opacity: 0;
+            font-family: $f-sans-serif-text;
+            font-size: 14px;
+            float: left;
+            margin-left: 10px;
+            margin-bottom: 0;
+            color: #fff;
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+        }
+
+        &:before {
+            width: 3px;
+            height: 20px;
+            background-color: #fff;
+            margin-bottom: 2px;
+            content: '';
+            display: block;
+            float: left;
+            opacity: 0.5;
+        }
+    }
+}
+
+.wr-section {
+    padding: 0 12px;
+    min-height: 300px;
+    height: 70vh;
+    position: relative;
+    z-index: 10;
+
+    @include mq($from: tablet) {
+        min-height: 600px;
+        height: 100vh;
+    }
+
+    svg, img {
+        width: 100%;
+        height: auto;
+        display: block;
+
+        @include mq($from: wide) {
+            height: 90vh;
+            width: auto;
+        }
+    }
+
+    .gs-container {
+        min-height: 300px;
+        height: 70vh;
+
+        @include mq($from: tablet) {
+            min-height: 600px;
+            height: 100vh;
+        }
+    }
+}
+
+.working-report__header {
+    background-color: #969696;
+}
+
+.working-report__intro-type {
+    position: absolute;
+    bottom: 0px;
+
+    @include mq($from: desktop) {
+        margin-left: 5.5vw;
+    }
+
+    .mobile {
+        display: block;
+        max-width: 370px;
+        width: 345px;
+        height: 375px;
+        border: 1px solid white;
+
+        @include mq($from: desktop) {
+            display: none;
+        }
+
+        h3 {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            -webkit-transition: opacity 0.5s ease-in-out;
+            transition-delay: 0.5s;
+            -webkit-transition-delay: 0.5s;
+
+            .inView & {
+                opacity: 1;
+            }
+        }
+
+        span {
+            border-top: 1px solid #fff;
+            display: block;
+            padding-bottom: 6px;
+            margin-top: -4px;
+        }
+
+        .offset {
+            transform: translateY(-22px);
+        }
+    }
+
+    .desktop {
+        display: none;
+
+        @include mq($from: desktop) {
+            display: block;
+        }
+    }
+
+    .box {
+        position: relative;
+        z-index: 10;
+    }
+
+    .big-number {
+        position: absolute;
+        top: 0px;
+        height: 51.6vh;
+        width: auto;
+        z-index: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        -webkit-transition: opacity 0.5s ease-in-out;
+        transition-delay: 0.5s;
+        -webkit-transition-delay: 0.5s;
+
+        @include mq($from: desktop){
+            height: 41.3vh;
+        }
+        @include mq($from: leftCol){
+            height: 48vh;
+        }
+        @include mq($from: wide){
+            height: 51.6vh;
+        }
+
+        .inView & {
+            opacity: 1;
+        }
+    }
+
+}
+
+.working-report__title {
+    position: absolute;
+    bottom: 12px;
+    max-width: 300px;
+
+    @include mq($from: desktop) {
+        left: 6vw;
+    }
+}
+
+.working-report__chapter-heading {
+    position: absolute;
+    bottom: 12px;
+    max-width: 300px;
+    left: 6px;
+
+    @include mq($from: desktop) {
+        left: 6vw;
+    }
+}
+
+.wr-copy {
+    max-width: 600px;
+
+    @include mq($from: desktop) {
+        padding-left: 6vw;
+        width: 500px;
+    }
+
+    @include mq($from: wide) {
+        width: 600px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+
+        &.mobile-image {
+            display: block;
+
+            @include mq($from: leftCol) {
+                display: none;
+            }
+        }
+    }
+}
+
+.desktop-images {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    z-index: -10;
+    width: 44%;
+    overflow: hidden;
+    right: 0px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    display: none;
+
+    @include mq($from: leftCol) {
+        display: block;
+    }
+
+    .on &{
+        opacity: 1;
+    }
+
+    img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        display: block;
+    }
+}

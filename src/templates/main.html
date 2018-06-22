@@ -1,1 +1,46 @@
-Content
+<div class="interactive-main">
+	{{#introduction}}
+		{{> header}}
+	{{/introduction}}
+	<!-- Adding in this empty div to inject the html we render in app.js into -->
+	<div class="interactive-blocks">
+        {{#chapters}}
+            <div id="{{id}}" class="wr-section" style="background-color:{{color}};">
+                <div class="gs-container">
+                    <div class="working-report__chapter-heading">
+                        <h1 {{#textColour}}style="color:{{textColour}};"{{/textColour}}>{{title}}</h1>
+                    </div>
+                    <div class="working-report__intro-type">
+                        <div class="mobile">
+                            <h3 {{#offset}}class="offset"{{/offset}} {{#textColour}}style="color:{{textColour}};"{{/textColour}}>{{number}}</h3>
+                            <h2 {{#textColour}}style="color:{{textColour}};"{{/textColour}}><span>{{mobileHeader}}</span></h2>
+                        </div>
+                        <img class="desktop box" src="https://uploads.guim.co.uk/2018/06/19/{{number}}back.svg">
+                        <img class="desktop big-number" src="https://uploads.guim.co.uk/2018/06/19/number{{number}}.svg">
+                    </div>
+                </div>
+            </div>
+            <div class="working-report__chapter-content" data-images="images{{number}}">
+                <div class="gs-container">
+					{{#data}}
+						
+					{{/data}}
+                    <div class="wr-copy">
+                        <pre>
+                            <p>{{{copy}}}</p>
+                            {{#copy-two}}
+                                <h2 class="sub-head">{{{sub-head}}}</h2>
+                                <p>{{{copy-two}}}</p>
+                            {{/copy-two}}
+                        </pre>
+                    </div>
+                </div>
+                <div class="desktop-images images{{number}}">
+                    {{#images}}
+                            <img src="{{image}}">
+                    {{/images}}
+                </div>
+            </div>
+        {{/chapters}}
+    </div>
+</div>
