@@ -1,3 +1,4 @@
+<div class="menu-screen-overlay"></div>
 <div class="interactive-main">
 	{{#introduction}}
 		{{> header}}
@@ -22,10 +23,19 @@
             </div>
             <div class="working-report__chapter-content" data-images="images{{number}}">
                 <div class="gs-container">
-					{{#data}}
-						
-					{{/data}}
                     <div class="wr-copy">
+						<div class="working-report__data-wrapper">
+							{{#data}}
+								<div class="working-report__data-container">
+									<div class="working-report__data-item">
+										{{num}}
+									</div>
+									<div class="working-report__data-caption">
+										{{attr}}
+									</div>
+								</div>
+							{{/data}}
+						</div>
                         <pre>
                             <p>{{{copy}}}</p>
                             {{#copy-two}}
@@ -37,7 +47,7 @@
                 </div>
                 <div class="desktop-images images{{number}}">
                     {{#images}}
-                            <img src="{{image}}">
+                            <img class="wr-desktop-images" src="{{image}}">
                     {{/images}}
                 </div>
             </div>
